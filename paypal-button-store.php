@@ -134,9 +134,15 @@ function paypal_button_shortcode( $atts ) {
 add_shortcode( 'spbs_paypal_button', 'paypal_button_shortcode' );
 
 function spbs_templates() {
+
     //products page
     if(is_page('products')) {
         $page_template = dirname( __FILE__ ) . '/templates/products.php';
+    }
+
+    //single product
+    if(is_single() && 'spbs-product' == get_post_type()) {
+        $page_template = dirname( __FILE__ ) . '/templates/product-single.php';
     }
 
     return $page_template;
