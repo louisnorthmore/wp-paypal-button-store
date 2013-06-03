@@ -76,7 +76,7 @@ function spbs_product_meta_box() {
     echo '<label for="spbs_paypal_button_code">';
     _e("PayPal Button Code", 'myplugin_textdomain' );
     echo '</label> ';
-    echo '<textarea id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.esc_attr($value).'</textarea>';
+    echo '<textarea id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
 }
 
 /* When the post is saved, saves our custom data */
