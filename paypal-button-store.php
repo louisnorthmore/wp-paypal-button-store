@@ -147,7 +147,9 @@ function spbs_list_products() {
 
     $args = array(
         'numberposts' => -1,
-        'post_type' => 'spbs-product'
+        'post_type' => 'spbs-product',
+        'order_by' => 'name',
+        'order' => 'ASC'
     );
     $products = get_posts($args);
 
