@@ -73,10 +73,8 @@ function spbs_product_meta_box($post) {
     // Use get_post_meta to retrieve an existing value from the database and use the value for the form
     $value = get_post_meta( $post->ID, 'spbs_paypal_button_code', true );
 
-    echo '<label for="spbs_paypal_button_code">';
-    _e("PayPal Button Code", 'myplugin_textdomain' );
-    echo '</label> ';
-    echo '<textarea id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
+
+    echo 'PayPal Button Code:<br><textarea rows="4" cols="50" id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
 }
 
 /* When the post is saved, saves our custom data */
