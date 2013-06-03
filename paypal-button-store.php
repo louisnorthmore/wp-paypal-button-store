@@ -165,7 +165,7 @@ function spbs_list_products() {
 
         <div class="spbs-product">
             <h2 class="entry-title"><?php echo $product->post_title ?></h2>
-            <?php echo get_the_post_thumbnail( $product->ID, array(70,70)); ?>
+            <?php echo get_the_post_thumbnail( $product->ID); ?>
             <?php echo $product->post_content ?>
             <?php echo get_paypal_button($product->ID) ?>
         </div>
