@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="content">
+<div id="content">
 
     <h2>Products</h2>
     <?php spbs_list_products(); ?>
