@@ -137,4 +137,19 @@ add_filter( 'page_template', 'spbs_templates' );
 
 function spbs_list_products() {
 
+    $args = array(
+        'numberposts' => -1,
+        'post_type' => 'spbs-product'
+    );
+    $products = get_posts($args);
+
+    foreach($products as $product) { ?>
+
+        <div class="spbs-product">
+            <h3><?php echo $product->post_title ?></h3>
+            <p><?php the_content(); ?></p>
+        </div>
+
+    <?php }
+
 }
