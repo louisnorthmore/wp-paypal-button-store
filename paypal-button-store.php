@@ -51,6 +51,14 @@ function spbs_core() {
 }
 add_action('init', 'spbs_core');
 
+//styles
+add_action( 'wp_enqueue_scripts', 'spbs_style' );
+function spbs_style() {
+    // Respects SSL, Style.css is relative to the current file
+    wp_register_style( 'prefix-style', plugins_url('/style/style.css', __FILE__) );
+    wp_enqueue_style( 'prefix-style' );
+}
+
 function spbs_product_meta() {
 //product meta
     $screens = array( 'spbs-product' );
