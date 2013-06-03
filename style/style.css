@@ -1,0 +1,9 @@
+/* Products */
+
+.spbs-product {
+    width: 30%;
+    display: block;
+    float: left;
+    border: 1px dashed black;
+    padding: 15px;
+}
