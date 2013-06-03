@@ -124,3 +124,13 @@ function paypal_button_shortcode( $atts ) {
     return $button;
 }
 add_shortcode( 'spbs_paypal_button', 'paypal_button_shortcode' );
+
+function spbs_templates() {
+    //products page
+    if(is_page('products')) {
+        $page_template = dirname( __FILE__ ) . '/templates/products.php';
+    }
+
+    return $page_template;
+}
+add_filter( 'page_template', 'spbs_templates' );
