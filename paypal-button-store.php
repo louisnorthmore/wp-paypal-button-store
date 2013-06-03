@@ -147,7 +147,7 @@ function spbs_list_products() {
 
         <div class="spbs-product">
             <h3><?php echo $product->post_title ?></h3>
-            <p><?php the_content(); ?></p>
+            <p><?php echo $product->post_content ?></p>
         </div>
 
     <?php }
