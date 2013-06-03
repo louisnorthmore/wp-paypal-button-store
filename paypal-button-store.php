@@ -86,7 +86,7 @@ function spbs_product_meta_box() {
 function spbs_save_postdata( $post_id ) {
 
     // First we need to check if the current user is authorised to do this action.
-    if ( 'page' == $_POST['post_type'] ) {
+    if ( 'spbs-product' == $_POST['post_type'] ) {
         if ( ! current_user_can( 'edit_page', $post_id ) )
             return;
     } else {
@@ -103,11 +103,11 @@ function spbs_save_postdata( $post_id ) {
     //if saving in a custom table, get post_ID
     $post_ID = $_POST['post_ID'];
     //sanitize user input
-    $mydata = sanitize_text_field( $_POST['myplugin_new_field'] );
+    $mydata = sanitize_text_field( $_POST['spbs_paypal_button_code'] );
 
     // Do something with $mydata
     // either using
-    add_post_meta($post_ID, '_my_meta_value_key', $mydata, true) or
-    update_post_meta($post_ID, '_my_meta_value_key', $mydata);
+    add_post_meta($post_ID, 'spbs_paypal_button_code', $mydata, true) or
+    update_post_meta($post_ID, 'spbs_paypal_button_code', $mydata);
     // or a custom table (see Further Reading section below)
 }
