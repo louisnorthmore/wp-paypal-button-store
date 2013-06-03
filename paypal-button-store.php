@@ -134,3 +134,7 @@ function spbs_templates() {
     return $page_template;
 }
 add_filter( 'page_template', 'spbs_templates' );
+
+function spbs_list_products() {
+
+}

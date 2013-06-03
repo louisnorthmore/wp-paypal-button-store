@@ -1,3 +1,9 @@
-<?php
+<?php get_header(); ?>
 
-echo 'this is the products page template';
+<div class="content">
+
+    <?php spbs_list_products(); ?>
+
+</div>
+
+<?php get_footer(); ?>
