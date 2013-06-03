@@ -145,7 +145,7 @@ function spbs_list_products() {
 
     foreach($products as $product) { ?>
 
-        <?php print_r($product) ?>
+        <?php //print_r($product) ?>
 
         <div class="spbs-product">
             <h2 class="entry-title><?php echo $product->post_title ?></h2>
