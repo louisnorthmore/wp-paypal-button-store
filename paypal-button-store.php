@@ -119,8 +119,8 @@ function paypal_button_shortcode( $atts ) {
         'product_id' => '',
     ), $atts ) );
 
-    $shortcode = "[spbs_paypal_button product_id=$product_id]";
+    $button = get_paypal_button($product_id);
 
-    return $shortcode;
+    return $button;
 }
 add_shortcode( 'spbs_paypal_button', 'paypal_button_shortcode' );
