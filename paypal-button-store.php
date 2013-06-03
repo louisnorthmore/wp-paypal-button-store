@@ -74,7 +74,11 @@ function spbs_product_meta_box($post) {
     $value = get_post_meta( $post->ID, 'spbs_paypal_button_code', true );
 
 
-    echo '<h3>PayPal Button Code:<h3><textarea rows="8" cols="140" id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
+    echo '<h4>PayPal Button Code:</h4>
+    <textarea rows="8" cols="140" id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
+
+    echo '<h4>Shortcode</h4>
+    <p><pre>'.paypal_button_shortcode($post->ID).'</pre></p>';
 }
 
 /* When the post is saved, saves our custom data */
@@ -99,3 +103,20 @@ function spbs_save_postdata( $post_id ) {
 
     }
 }
+
+function get_paypal_button($product_id) {
+
+    $button = get_post_meta($product_id, 'spbs_paypal_button_code', true);
+
+    return $button;
+
+}
+
+function paypal_button_shortcode( $atts ) {
+    extract( shortcode_atts( array(
+        'product_id' => '',
+    ), $atts ) );
+
+    return get_paypal_button($product_id);
+}
+add_shortcode( 'spbs-paypal_button', 'paypal_button_shortcode' );
