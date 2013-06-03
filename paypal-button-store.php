@@ -75,10 +75,12 @@ function spbs_product_meta_box() {
     // The actual fields for data entry
     // Use get_post_meta to retrieve an existing value from the database and use the value for the form
     $value = get_post_meta( $post->ID, '_my_meta_value_key', true );
+
     echo '<label for="myplugin_new_field">';
-    _e("Description for this field", 'myplugin_textdomain' );
+    _e("PayPal Button Code", 'myplugin_textdomain' );
     echo '</label> ';
-    echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="'.esc_attr($value).'" size="25" />';
+    //echo '<input type="text" id="myplugin_new_field" name="myplugin_new_field" value="'.esc_attr($value).'" size="25" />';
+    echo '<textarea id="spbs_paypal_button_code" name"spbs_paypal_button_code">'.esc_attr($value).'</textarea>';
 }
 
 /* When the post is saved, saves our custom data */
