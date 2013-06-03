@@ -67,7 +67,7 @@ function spbs_product_meta() {
 }
 add_action('add_meta_boxes', 'spbs_product_meta');
 
-function spbs_product_meta_box() {
+function spbs_product_meta_box($post) {
 
     // The actual fields for data entry
     // Use get_post_meta to retrieve an existing value from the database and use the value for the form
