@@ -92,7 +92,7 @@ function spbs_save_postdata( $post_id ) {
     //if saving in a custom table, get post_ID
     $post_ID = $_POST['post_ID'];
     //sanitize user input
-    $mydata = sanitize_text_field( $_POST['spbs_paypal_button_code'] );
+    $mydata = $_POST['spbs_paypal_button_code'];
 
     // Do something with $mydata
     add_post_meta($post_ID, 'spbs_paypal_button_code', $mydata, true) or
