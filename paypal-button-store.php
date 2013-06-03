@@ -80,7 +80,7 @@ function spbs_product_meta_box($post) {
 
     $shortcode = "[spbs_paypal_button product_id=\"".$post->ID."\"]";
     echo '<h4>Shortcode</h4>
-    <pre>$shortcode</pre>';
+    <pre>'.$shortcode.'</pre>';
 }
 
 /* When the post is saved, saves our custom data */
