@@ -74,7 +74,7 @@ function spbs_product_meta_box($post) {
     $value = get_post_meta( $post->ID, 'spbs_paypal_button_code', true );
 
 
-    echo '<p><h3>PayPal Button Code:<h3><textarea rows="8" cols="140" id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea></p>';
+    echo '<h3>PayPal Button Code:<h3><textarea rows="8" cols="140" id="spbs_paypal_button_code" name="spbs_paypal_button_code">'.$value.'</textarea>';
 }
 
 /* When the post is saved, saves our custom data */
