@@ -148,7 +148,7 @@ function spbs_list_products() {
         <?php print_r($product) ?>
 
         <div class="spbs-product">
-            <h3><?php echo $product->post_title ?></h3>
+            <h2 class="entry-title><?php echo $product->post_title ?></h2>
             <p><?php echo $product->post_content ?></p>
             <p><?php echo get_paypal_button($product->ID) ?></p>
         </div>
