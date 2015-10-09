@@ -1,30 +1,32 @@
-# Required to run your project under the correct environment.
+# Travis CI Configuration File
+
+# Tell Travis CI we're using PHP
 language: php
 
-# Versions of PHP you want your project run with.
+# Versions of PHP to test against
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
+    - "5.2"
+    - "5.3"
+    - "5.4"
+    - "5.6"
+    - "HHVM"
 
-# Commands to be run before your environment runs.
-#before_script:
-#  - composer self-update
-#  - composer install --prefer-source --no-interaction --dev
+# Specify versions of WordPress to test against
+# WP_VERSION = WordPress version number (use "master" for SVN trunk)
+# WP_MULTISITE = whether to test multisite (use either "0" or "1")
+env:
+    - WP_VERSION=master WP_MULTISITE=0
+    - WP_VERSION=3.4.2 WP_MULTISITE=0
 
-# Commands you want to run that will verify your build.
+# Grab the setup script and execute
+before_script:
+    - wget https://raw.github.com/tierra/wordpress-plugin-tests/setup/setup.sh
+    - source setup.sh
+
 script: phpunit
 
-# allow_failures: Allow this build to fail under the specified environments.
-# fast_finish: If your build fails do not continue trying to build, just stop.
-#matrix:
-#  allow_failures:
-#    - php: 5.6
-#    - php: hhvm
-#  fast_finish: true
-
-# Customize when the notification emails are sent.
-notifications:
-    on_success: never
-    on_failure: always
+# wordpress-plugin-tests specific config
+# Tells Travis CI not to run unit tests against the setup branch
+#branches:
+#    except:
+#        - setup
