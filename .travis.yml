@@ -1,32 +1,31 @@
-# Travis CI Configuration File
+# This uses newer and faster docker based build system
+sudo: false
 
-# Tell Travis CI we're using PHP
 language: php
 
-# Versions of PHP to test against
+notifications:
+  on_success: never
+  on_failure: change
+
 php:
-    - "5.2"
-    - "5.3"
-    - "5.4"
-    - "5.6"
-    - "HHVM"
+  - nightly # PHP 7.0
+  - 5.6
+  - 5.5
+  - 5.4
 
-# Specify versions of WordPress to test against
-# WP_VERSION = WordPress version number (use "master" for SVN trunk)
-# WP_MULTISITE = whether to test multisite (use either "0" or "1")
 env:
-    - WP_VERSION=master WP_MULTISITE=0
-    - WP_VERSION=3.4.2 WP_MULTISITE=0
+  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
 
-# Grab the setup script and execute
+matrix:
+  allow_failures:
+    - php: nightly
+
 before_script:
-    - wget https://raw.github.com/tierra/wordpress-plugin-tests/setup/setup.sh
-    - source setup.sh
+  # Install composer packages before trying to activate themes or plugins
+  # - composer install
 
-script: phpunit
+  - git clone https://github.com/Seravo/wordpress-test-template wp-tests
+  - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
-# wordpress-plugin-tests specific config
-# Tells Travis CI not to run unit tests against the setup branch
-#branches:
-#    except:
-#        - setup
+script:
+  - phpunit
