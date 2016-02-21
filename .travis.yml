@@ -1,19 +1,45 @@
-# This uses newer and faster docker based build system
-sudo: false
-
 language: php
-
 php:
-  - nightly # PHP 7.0
-  - 5.6
-  - 5.5
   - 5.4
-  - 5.3
+  - 5.5
+  - 5.6
+  - 7.0
 
 before_script:
-  - pear install PHP_CodeSniffer
+  ## PHP_CodeSniffer
+  - pear install pear/PHP_CodeSniffer
   - phpenv rehash
-  - ./composer.phar install --dev --prefer-source --no-interaction
+  ## PHP Copy/Paste Detector
+  - curl -o phpcpd.phar https://phar.phpunit.de/phpcpd.phar
+  ## PHP Mess Detector
+  - pear config-set preferred_state beta
+  - printf "\n" | pecl install imagick
+  - pear channel-discover pear.phpmd.org
+  - pear channel-discover pear.pdepend.org
+  - pear install --alldeps phpmd/PHP_PMD
+  - phpenv rehash
+  ## PHPLOC
+  - curl -o phploc.phar https://phar.phpunit.de/phploc.phar
 
 script:
-  - phpcs --standard=PSR2 ./**/*.php
+  ## PHP_CodeSniffer
+  - phpcs --report=emacs --standard=PSR2 . --ignore=vendor/*
+  ## PHP Copy/Paste Detector
+  - php phpcpd.phar --verbose .
+  ## PHP Mess Detector
+  - phpmd . text cleancode --exclude vendor
+  - phpmd . text codesize --exclude vendor
+  - phpmd . text controversial --exclude vendor
+  - phpmd . text design --exclude vendor
+  - phpmd . text naming --exclude vendor
+  - phpmd . text unusedcode --exclude vendor
+  ## PHPLOC
+  - php phploc.phar . --exclude vendor
+  ## PHPUNIT
+  - phpunit .
+  ## LINT
+  - find ./ -type f -name \*.php -exec php -l {} \;
+
+notifications:
+  email:
+    louis.northmore@gmail.com
