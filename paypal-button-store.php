@@ -1,17 +1,18 @@
 <?php
-/*
+/**
 Plugin Name: Simple PayPal Button Store
-Plugin URI: http://interactivedimension.com
+Plugin URI: http://northmore.net
 Description: WordPress simple store for PayPal Button items
-Version: 1.0
-Author: @weareid, @louisnorthmore
-Author URI: http://interactivedimension.com
+Version: 1.1
+Author: @louisnorthmore
 */
 
+/**
+ * SPBS core function
+ * Load custom post types
+ */
 function spbs_core() {
 
-
-//products post type
     $labels = array(
         'name' => 'Products',
         'singular_name' => 'Product',
